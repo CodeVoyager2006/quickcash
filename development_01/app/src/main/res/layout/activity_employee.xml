@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/employeeName"
+        android:layout_width="225dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/fixedEmployeeName"
+        app:layout_constraintTop_toBottomOf="@+id/employee_role" />
+
+    <TextView
+        android:id="@+id/employeeEmail"
+        android:layout_width="230dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/fixedEmployeEmail"
+        app:layout_constraintTop_toBottomOf="@+id/employeeName" />
+
+    <Button
+        android:id="@+id/employeeLogOut"
+        android:layout_width="119dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="170dp"
+        android:text="Log Out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employee_role" />
+
+    <TextView
+        android:id="@+id/fixedEmployeEmail"
+        android:layout_width="116dp"
+        android:layout_height="30dp"
+
+        android:layout_marginTop="20dp"
+        android:text="Employer Email"
+        app:layout_constraintTop_toBottomOf="@+id/fixedEmployeeName"
+        tools:layout_editor_absoluteX="9dp" />
+
+    <TextView
+        android:id="@+id/fixedEmployeeName"
+        android:layout_width="116dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:text="User Name"
+        app:layout_constraintTop_toBottomOf="@+id/employee_role"
+        tools:layout_editor_absoluteX="9dp" />
+
+    <TextView
+        android:id="@+id/employee_role"
+        android:layout_width="100dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginEnd="148dp"
+        android:text="Search for Jobs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="41dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
