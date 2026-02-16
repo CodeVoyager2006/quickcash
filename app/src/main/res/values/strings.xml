@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">development_01</string>
+    <string name="email_address">Email Address</string>
+    <string name="password" />
+    <string name="employer">Employer</string>
+    <string name="employee">Employee</string>
+    <string name="register_screen">Register Screen</string>
+    <string name="name">User Name</string>
+    <string name="signup">Sign Up</string>
+    <string name="EMPTY_EMAIL">Please enter an email address</string>
+    <string name="INVALID_EMAIL">Please enter a valid Email Address</string>
+    <string name="EMPTY_PASSWORD">Password can not be empty</string>
+    <string name="INVALID_PASSWORD">Please enter a Strong password</string>
+    <string name="EMPTY_ROLE">"Please select a role "</string>
+    <string name="VALID_EMAIL">Complete Email</string>
+    <string name="EMPTY_USERNAME">Please enter a User Name</string>
+    <string name="STRONG_PASSWORD">Password is Valid</string>
+</resources>
