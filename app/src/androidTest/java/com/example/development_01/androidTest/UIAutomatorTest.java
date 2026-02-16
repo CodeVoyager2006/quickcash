@@ -26,7 +26,6 @@ import org.junit.runner.RunWith;
 public class UIAutomatorTest {
 
     private static final int LAUNCH_TIMEOUT = 5000;
-    private static final int FIREBASE_TIMEOUT = 8000;
     final String launcherPackage = "com.example.development_01";
     private UiDevice device;
 

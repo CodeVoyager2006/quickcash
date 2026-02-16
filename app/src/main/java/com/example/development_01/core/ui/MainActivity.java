@@ -13,13 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.development_01.R;
 import com.example.development_01.core.core.CredentialValidator;
-import com.example.development_01.core.data.firebase.IUserRepository;
-import com.example.development_01.core.data.firebase.UserRepository;
+import com.example.development_01.core.data.firebase.FirebaseCRUD;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     CredentialValidator validator;
-    IUserRepository userRepository;
+    FirebaseCRUD firebaseManager;
+    private boolean isTestMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +29,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.validator = new CredentialValidator();
 
         // Only initialize if not already set
-        if (this.userRepository == null) {
-            userRepository = new UserRepository();
+        if (!isTestMode) {
+            this.firebaseManager = new FirebaseCRUD(com.google.firebase.database.FirebaseDatabase.getInstance());
         }
     }
 
-    public void setUserRepository(IUserRepository repository) {
-        this.userRepository = repository;
+    public void enableTestMode() {
+        this.isTestMode = true;
     }
 
     protected void setupRegistrationButton() {
@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 // Validation passed
             getShadowToast("Registering...").show();
 // Register user with Firebase
-            registerUserWithFirebase(userName, emailAddress, password, role);
+            if (!isTestMode && firebaseManager != null) {
+                registerUser(userName, emailAddress, password, role);
+            }
         } else {
 // Show error message
             getShadowToast(errorMessage).show();
@@ -68,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * AC4: Create user in Firebase Auth and save role to Realtime Database
      * AC5: Handle "User already exists" error
      */
-    private void registerUserWithFirebase(String userName, String emailAddress, String password, String role) {
-        userRepository.registerUser(userName, emailAddress, password, role,
-                new IUserRepository.RegistrationCallback() {
+    private void registerUser(String userName, String emailAddress, String password, String role) {
+        firebaseManager.registerUser(userName, emailAddress, password, role,
+                new FirebaseCRUD.RegistrationCallback() {
                     @Override
                     public void onSuccess(String userId) {
                         //saveToDatabase(emailAddress, role);
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onError(String error) {
                         // AC5: Display specific error messages
-                        if (error.contains("already exists") || error.contains("already in use")) {
+                        if (error.contains("already exists")) {
                             getShadowToast("User already exists").show();
                         } else {
                             getShadowToast("Registration failed: " + error).show();
@@ -153,9 +155,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     protected void saveToDatabase(String emailAddress, String role) {
         // Reserved for additional database operations if needed in the future
-        // Primary registration is handled by UserRepository.registerUser()
+        // Primary registration is handled by FirebaseCRUD.registerUser()
     }
-
     protected void move2WelcomeScreen(String message, String role) {
         // TODO: Implement navigation to welcome/home screen based on role
         // Intent intent = new Intent(this, WelcomeActivity.class);

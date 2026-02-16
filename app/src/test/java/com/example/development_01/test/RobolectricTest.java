@@ -36,10 +36,8 @@ public class RobolectricTest {
     public void setup() {
         context = ApplicationProvider.getApplicationContext();
         controller = Robolectric.buildActivity(MainActivity.class);
-
         shadow = controller.get();
-        shadow.setUserRepository(new MockUserRepository());
-
+        shadow.enableTestMode();
         controller.create().start().resume();
     }
 
